@@ -7,7 +7,7 @@
 let tres_primeras =[
     {titulo: "Superlopez", director: "Javier Ruiz Caldera", "miniatura":"files/superlopez.png"},
     {titulo:"Jurassic Park", director:"Steven Spielberg", "miniatura":"files/jurassicpark.png"},
-    {titulo:"Interstellar",director:"Christopher Nolan", "miniatura":"files/interstellar.png"},
+    {titulo:"Interstellar",director:"Christopher Nolan", "miniatura":"files/interstellar.png"}
 
 ];
 localStorage.mis_peliculas = localStorage.mis_peliculas || JSON.stringify(tres_primeras);
@@ -23,31 +23,32 @@ const indexView = (peliculas) => {
     let view = "";
 
     while(i< peliculas.length){
-        view +=`
+        view +=
 
-            <div class ="movie">
-                <div class="movie-img">
-                    <img data-my-id="${i}" src="${peliculas[i].miniatura}" oneerror= "this.src='files/placeholder.png'"/>
-                </div>
-                <div class="title">
-                    ${peliculas[i].titulo || "<em>Sin título</em>"}
-                </div>
-                <div class ="actions">
-                    <!-- Botones "Show" y "Delete"-->
-                    <button class= "edit" data-my-id = "${i}">editar</button>
+        <div class ="movie">
+            <div class="movie-img">
+                <img data-my-id="${i}" src="${peliculas[i].miniatura}" onerror= "this.src='files/placeholder.png'"/>
+            </div>
+            <div class="title">
+                ${peliculas[i].titulo || "<em>Sin título</em>"}
+            </div>
+            <div class ="actions">
+                <button class ="ver" data-my-id="${id}">ver</button>
+                <button class="delete" data-my-id="${id}">borrar</button>
+                <button class= "edit" data-my-id = "${i}">editar</button>
 
-                </div>
-            </div>\n`;
+            </div>
+        </div>\n;
         
         i = i+1;
     
     };
 
-    view += `<div class="actions">
-                <!-- Botones "añadir" y "reset"-->
+    view += <div class="actions">
+               
                 <button class = "new">añadir</button>
                 <button class="reset">reset </button>
-            </div>`;
+            </div>;
     return view;
 
 };
@@ -56,13 +57,13 @@ const editView = (i, pelicula) => {
     return `<h2> Editar pelicula </h2>
         <div class="field">
         Titulo <br>
-        <input type= "text" id="titulo" placeholder="titulo"
+        <input type= "text" id="titulo" placeholder="Titulo"
             value="${pelicula.titulo}">
         </div>
+       
         <div class="field">
-
         Director <br>
-        <input type="text" id="director" placeholder="director"
+        <input type="text" id="director" placeholder="Director"
             value="${pelicula.director}">
         </div>
 
@@ -74,13 +75,12 @@ const editView = (i, pelicula) => {
 
         <div class="actions">
             <button class="update" data-my-id="${i}">
-                actualizar
+                Actualizar
             </button>
             <button class= "index">
-                volver
+                Volver
 
             </button>
-        </div>
         `;
 }
 
