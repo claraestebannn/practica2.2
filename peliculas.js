@@ -4,13 +4,13 @@
 // mediante un array en el que 
 //cada película consiste en un objeto con las siguientes claves:
 
-let mis_peliculas =[
+let tres_primeras =[
     {titulo: "Superlopez", director: "Javier Ruiz Caldera", "miniatura":"files/superlopez.png"},
     {titulo:"Jurassic Park", director:"Steven Spielberg", "miniatura":"files/jurassicpark.png"},
     {titulo:"Interstellar",director:"Christopher Nolan", "miniatura":"files/interstellar.png"},
 
 ];
-localStorage.mis_peliculas = localStorage.mis_peliculas || JSON.stringify(mis_peliculas);
+localStorage.mis_peliculas = localStorage.mis_peliculas || JSON.stringify(tres_primeras);
 
 // Vistas
 //Las vistas generan
@@ -45,8 +45,8 @@ const indexView = (peliculas) => {
 
     view += `<div class="actions">
                 <!-- Botones "añadir" y "reset"-->
-                <button class = "new" id="new" data-my-id="${i}">add movie</button>
-                <button class="reset" id="reset" data-my-id="${i}">reset all</button>
+                <button class = "new">añadir</button>
+                <button class="reset">reset </button>
             </div>`;
     return view;
 
@@ -119,22 +119,22 @@ const newView = () => {
 
     <div class= "field">
     Titulo <br>
-    <input type="text" id="titulo" placeholder ="titulo">
+    <input type="text" id="titulo" placeholder ="Titulo">
     </div>
 
     <div class= "field">
     Director <br>
-    <input type="text" id="director" placeholder ="director">
+    <input type="text" id="director" placeholder ="Director">
     </div>
 
     <div class= "field">
-    Miniatura<br>
+    Miniatura <br>
     <input type="text" id="miniatura" placeholder ="URL de la imagen">
     </div>
 
     <div class="actions">
-        <button class="create" id="create" >Crear</button>
-        <button class="index" id="volver"> Volver</button>
+        <button class="crear" >Crear</button>
+        <button class="index"> Volver</button>
     
     `;
 
