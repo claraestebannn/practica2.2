@@ -140,6 +140,96 @@ const newView = () => {
 
 }
 
+//controladores
+// Implementan la lógica de la aplicacion que permite actuar en función de las acciones del usuario.
+const indexContr = () => {
+    //acceder al array de películas y pasárselo a la vista indexView
+    let mis_peliculas = JSON.parse (localStorage.mis_peliculas);
+    document.getElementById('main').innerHTML = indexView(mis_peliculas);
+
+};
+
+const editContr = (i) => {
+    let pelicula= JSON.parse(localStorage.mis_peliculas)[i];
+    document.getElementById('main').innerHTML= editView(i,pelicula);
+
+};
+const updateContr =(i) => {
+    let mis_peliculas= JSON.parse(localStorage.mis_peliculas);
+    mis_peliculas[i].titulo = document.getElementById('titulo').value;
+    mis_peliculas[i].director = document.getElementById('director').value;
+    mis_peliculas[i].miniatura = document.getElementById('miniatura').value;
+    localStorage.mis_peliculas = JSON.stringify(mis_peliculas);
+    indexContr();
+    
+};
+const showContr = () => {
+    let mis_peliculas =JSON.parse(localStorage.mis_peliculas);
+    document.getElementById('main').innerHTML = indexView(mis_peliculas);
+
+};
+
+const newContr = () => {
+    document.getElementById('main').innerHTML = newView();
+};
+
+const createContr = () => {
+    let mis_peliculas = JSON.parse(localStorage.mis_peliculas);
+    var new_movie = {
+        titulo: document.getElementById("titulo").value,
+        director: document.getElementById("director").value,
+        miniatura: document.getElementById("miniatura").value};
+    mis_peliculas.push(new_movie);
+    localStorage.mis_peliculas= JSON.stringify(mis_peliculas);
+    indexContr();
+
+
+
+
+};
+
+const deleteContr = (i) => {
+    let mis_peliculas = JSON.parse(localStorage.mis_peliculas);
+    var r = confirm ("Confirma eliminación?");
+    if (r == true) {
+        mis_peliculas.splice(i,1);
+        localStorage.mis_peliculas= JSON.stringify(mis_peliculas);
+        indexContr();
+    } else {
+        indexContr();
+
+    }
+};
+
+const resetContr = () => {
+
+    localStorage.mis_peliculas=JSON.stringify(mis_peliculas);
+    indexContr();
+
+};
+
+
+//Router
+//asociar los eventos de clic del usuario con los controladores adecuados
+
+const matchEvent = (ev,sel) => ev.target.matches(sel);
+const myId = (ev) => Number(ev.target.dataset.myId);
+
+document.addEventListener('clic', ev=>{
+    if (matchEvent(ev,'.index')) indexContr();
+    else if (matchEvent(ev,'.edit')) editContr (myId(ev));
+    else if (matchEvent(ev,'.update')) updateContr(myId(ev));
+    else if (matchEvent(ev,'.show')) showContr(myId(ev));
+    else if (matchEvent(ev,'.new')) newContr(myId(ev));
+    else if (matchEvent(ev,'.create')) createContr(myId(ev));
+    else if (matchEvent(ev,'.delete')) deleteContr(myId(ev));
+    else if (matchEvent(ev,'.reset')) resetContr(myId(ev));
+
+
+})
+
+
+document.addEventListener('DOMContentLoaded', indexContr);
 
 
 
