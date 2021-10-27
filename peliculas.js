@@ -21,6 +21,8 @@ localStorage.mis_peliculas = localStorage.mis_peliculas || JSON.stringify(mis_pe
 const indexView (peliculas)
 
 const editView (i, pelicula)
+hgkgkyug
+
 const showView(pelicula)
 const newViev()
 
